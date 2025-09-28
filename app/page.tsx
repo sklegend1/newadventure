@@ -45,7 +45,7 @@ export default function Home() {
         </BarChart> 
       </ChartContainer> */}
         <div className="stars w-full"></div>
-        <div className=" moonlogo w-1/2  mt-40 aspect-square "/>
+        <div className=" moonlogo w-1/2 md:w-1/4 mt-40 md:mt-10 aspect-square "/>
         <div className="twinkling w-full"></div> 
        <div className="clouds w-full"></div>
         <MoonPage3 />

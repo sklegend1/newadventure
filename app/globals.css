@@ -145,7 +145,7 @@ display:block;
 }
 
 .stars {
-background:#1b0246 url(../public/stars.png) repeat top center;
+background:#000 url(../public/stars.png) repeat top center;
 z-index:0;
 }
 .moonlogo {
