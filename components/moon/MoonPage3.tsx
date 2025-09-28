@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 function MoonSurface() {
-  const texture = new THREE.TextureLoader().load("/textures/moon.jpg");
+  const texture = new THREE.TextureLoader().load("/textures/moon.webp");
 
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]}>
@@ -18,6 +18,36 @@ function MoonSurface() {
 function CameraController() {
   const { camera } = useThree();
   const [posZ, setPosZ] = useState(0);
+  const touchStartY = useRef<number | null>(null);
+
+  // برای موبایل
+  useEffect(() => {
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (touchStartY.current !== null) {
+        const deltaY = e.touches[0].clientY - touchStartY.current;
+        setPosZ((prev) => prev + deltaY * 0.005); // سرعت حرکت
+        touchStartY.current = e.touches[0].clientY; // آپدیت برای حرکت بعدی
+      }
+    };
+
+    const handleTouchEnd = () => {
+      touchStartY.current = null;
+    };
+
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, []);
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {

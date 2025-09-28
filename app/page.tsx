@@ -44,9 +44,10 @@ export default function Home() {
           <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
         </BarChart> 
       </ChartContainer> */}
-        <div className="stars"></div>
-        <div className="twinkling"></div> 
-       <div className="clouds"></div>
+        <div className="stars w-full"></div>
+        <div className=" moonlogo w-1/2  mt-40 aspect-square "/>
+        <div className="twinkling w-full"></div> 
+       <div className="clouds w-full"></div>
         <MoonPage3 />
       </div>
       

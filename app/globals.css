@@ -145,10 +145,14 @@ display:block;
 }
 
 .stars {
-background:#000 url(../public/stars.png) repeat top center;
+background:#1b0246 url(../public/stars.png) repeat top center;
 z-index:0;
 }
-
+.moonlogo {
+  background: transparent url(../public/logo1trans.png) no-repeat center  center;
+  background-size: contain;
+  z-index:2;
+  }
 .twinkling{
 background:transparent url(../public/twinkling.png) repeat top center;
 z-index:1;
@@ -157,7 +161,7 @@ animation:move-twink-back 200s linear infinite;
 
 .clouds{
   background:transparent url(../public/clouds.png) repeat top center;
-  z-index:2;
+  z-index:3;
   opacity: .4;
   animation:move-clouds-back 200s linear infinite;
 }
