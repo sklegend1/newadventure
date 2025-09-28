@@ -1,8 +1,20 @@
 "use client";
 
+import { Html, useProgress } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+
+function Loader() {
+    const { progress } = useProgress();
+    return (
+      <Html center>
+        <div style={{ color: "white", fontSize: "18px" }}>
+          Please Wait ... {progress.toFixed(0)}%
+        </div>
+      </Html>
+    );
+  }
 
 function MoonSurface() {
   const texture = new THREE.TextureLoader().load("/textures/moon.webp");
@@ -69,12 +81,16 @@ function CameraController() {
 export default function MoonPage3() {
   return (
     <div className="h-[60vh] z-50 fixed bottom-0 w-screen overflow-hidden ">
+        
       <Canvas camera={{ position: [0, 0, 10], fov: 60 }}>
+        <Suspense fallback={<Loader />}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[10, 10, 10]} intensity={10} />
         <MoonSurface />
         <CameraController />
+        </Suspense>
       </Canvas>
+      
     </div>
   );
 }
